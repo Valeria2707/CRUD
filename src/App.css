@@ -10,3 +10,19 @@
     justify-content: center;
     gap: 20px;
 }
+
+.link{
+    height: 30px;
+    width: 100px;
+    background-color: aqua;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: flex;
+   align-items: center;
+   justify-content: center;
+}

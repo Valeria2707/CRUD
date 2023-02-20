@@ -1,9 +1,11 @@
 import React from 'react';
 import Button from '../Button/Button';
-import './Form.css'
+import './Form.css';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Form = ({returnPageList,addNewPeople, peopleInformation}) =>{
-   const saveAdd = () =>{
+const Form = ({addNewPeople, peopleInformation}) =>{
+    let navigate = useNavigate();
+    const saveAdd = () =>{
         const newName = document.querySelector('.name').value 
         const newSurname = document.querySelector('.surname').value 
         const newPhone = document.querySelector('.phone').value 
@@ -46,7 +48,7 @@ const Form = ({returnPageList,addNewPeople, peopleInformation}) =>{
                 }
                 addNewPeople(newPeople)
             }
-            returnPageList()
+            navigate('/')
         }
     }
 
@@ -57,7 +59,7 @@ const Form = ({returnPageList,addNewPeople, peopleInformation}) =>{
             <input type={'text'} name={'phone'}placeholder={'phone'} className={'phone'}/>
             <div className='blockButton'>
             <Button text={'save'} func={saveAdd}/>
-            <Button text={'cancel'} func={returnPageList}/>
+            <Link to="/" className='link'>Cancel</Link>
            </div>
         </div>
     );

@@ -2,10 +2,9 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import Form from './components/Form/Form';
 import List from './components/List/List';
-import Button from './components/Button/Button';
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 
 function App() {
-  let [page, setPage] = useState('list');
   let [data, setData] = useState([]);
 
   useEffect(() => {
@@ -23,23 +22,20 @@ function App() {
     setData([...data, person])
   }
 
-  const chooseList = ()=>{
-    setPage('list')
-  }
-
-  const chooseForm = ()=>{
-    setPage('form')
-  }
 
   return (
+  <BrowserRouter>
     <div className="App">
       <div className='blockButton'>
-      <Button func={chooseList} text = {'list'}/>
-      <Button func={chooseForm} text = {'Form'}/>
+       <Link to="/" className='link'>List</Link>
+       <Link to="/form" className='link'>Form</Link>
       </div>
-      {page === 'list' ? <List dataPeople = {data} deletePerson = {deletePerson} /> :
-      <Form returnPageList = {chooseList} addNewPeople = {addPeopleList} peopleInformation = {data}/>}
+      <Routes>
+        <Route path='/' element ={<List dataPeople = {data} deletePerson = {deletePerson}/>}/>
+        <Route path='/form' element ={<Form  addNewPeople = {addPeopleList} peopleInformation = {data}/>}/>
+      </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 
