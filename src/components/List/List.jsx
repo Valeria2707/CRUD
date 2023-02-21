@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
+import ModalWindow from '../ModalWindow/ModalWndow';
 import './List.css'
 
 const List = ({dataPeople, deletePerson}) =>{
+  let [showModal, setShowModal] = useState(false);
+  let [buttonDel, setButtonDel] = useState(0)
   let navigat = useNavigate();
+
   const searchDelete = (event)=>{
     const id = event.target.id;
-    deletePerson(id)
+    setButtonDel(id)
+    setShowModal(true)
   }
 
   const editPeople = (event)=>{
     const id = event.target.id;
-    console.log(id)
     navigat(`/formEdit/${id}`)
   }
 
+  const confirmDelete = () => {
+    deletePerson(buttonDel)
+    setShowModal(false)
+  }
+
+  const cancelDelete = () => {
+    setShowModal(false)
+  }
+
     return(
+      <div>
+     {showModal && <ModalWindow confirmDelete= {confirmDelete} cancelDelete = {cancelDelete}/>}
       <table>
       <tbody>
         <tr>
@@ -34,10 +49,11 @@ const List = ({dataPeople, deletePerson}) =>{
             <Button  id={data.id} func={searchDelete} text={'delete'}/>
             <Button  id={data.id} func={editPeople} text={'edit'}/>
           </td>
-        </tr>
+        </tr>  
         )}
       </tbody>
       </table>
+      </div>
     );
 }
 

@@ -1,0 +1,36 @@
+.confirmation{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.755);
+}
+
+.blockDelete{
+    width: 300px ;
+    background-color: rgb(190, 242, 242);
+    border: 1px solid aqua;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.blockBtnDelete{
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.textDelete{
+    font-size: 16px;
+    font-weight: 600;
+}
