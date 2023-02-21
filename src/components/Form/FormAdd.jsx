@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from '../Button/Button';
-import './Form.css';
+import './FormAdd.css';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Form = ({addNewPeople, peopleInformation}) =>{
+const FormAdd = ({addNewPeople, peopleInformation}) =>{
     let navigate = useNavigate();
     const saveAdd = () =>{
         const newName = document.querySelector('.name').value 
@@ -65,4 +65,4 @@ const Form = ({addNewPeople, peopleInformation}) =>{
     );
 }
 
-export default Form;
+export default FormAdd;
