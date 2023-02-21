@@ -15,7 +15,10 @@ function App() {
     else{
       fetch(' https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
-      .then(dataPeople => setData(dataPeople))
+      .then(dataPeople => {
+        setData(dataPeople)
+        addLocalStorage(dataPeople)
+      })
     }
   }, [])
 
@@ -55,11 +58,9 @@ function App() {
        <Link to="/formAdd" className='link'>Form</Link>
       </div>
       <Routes>
-        <Route path='/' element ={<List dataPeople = {data} deletePerson = {deletePerson}/>}/>
+        <Route path='/' element ={<List dataPeople = {data} deletePerson={deletePerson}/>}/>
         <Route path='/formAdd' element ={<FormAdd  addNewPeople = {addPeopleList} peopleInformation = {data}/>}/>
-        {data.map(peopleForm =>(
-           <Route path={`/formEdit/:${peopleForm.id}`} key={peopleForm.id} element ={<FormEdit peopleInformation = {data} editPersonSave = {editPerson}/>}/>
-        ))}
+        <Route path={`/formEdit/:id`} element ={<FormEdit peopleInformation = {data} editPersonSave = {editPerson}/>}/>
       </Routes>
     </div>
     </BrowserRouter>

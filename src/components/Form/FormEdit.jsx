@@ -3,32 +3,18 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
 
 const FormEdit = (editPersonSave) =>{
+    const {id} = useParams();
     let navigate = useNavigate();
     let [name, setName] = useState('')
     let [surname, setSurname] = useState('')
-    let [phone, setPhone] = useState('')
-
-    const params = useParams();
-    const num = params['1'] ;
+    let [phone, setPhone] = useState('');
 
     useEffect(() => {
-        if (localStorage.getItem('people')) {
             let people = (JSON.parse(localStorage.getItem('people')));
-            let res = people.filter(item => item.id === +num);
+            let res = people.filter(item => item.id === +id);
             setName(res[0].name.split(' ').at(0))
             setSurname(res[0].name.split(' ').at(1))
             setPhone(res[0].phone)
-          }
-        else{
-        fetch(` https://jsonplaceholder.typicode.com/users/${num}`)
-        .then(response => response.json())
-        .then(dataPerson => {
-            console.log(dataPerson)
-            setName(dataPerson.name.split(' ').at(0))
-            setSurname(dataPerson.name.split(' ').at(1))
-            setPhone(dataPerson.phone)
-        })
-    }
     }, [])
 
     const addEditPerson = ()=>{
@@ -59,7 +45,7 @@ const FormEdit = (editPersonSave) =>{
         }
         else{
             const editPeople = {
-                id: +num,
+                id: +id,
                 name: name + ' ' + surname,
                 phone: phone,
             }
@@ -81,7 +67,6 @@ const FormEdit = (editPersonSave) =>{
     const getValuePhone = (event)=>{
         setPhone(event.target.value)
     }
-
 
     return(
         <div className='form'>
