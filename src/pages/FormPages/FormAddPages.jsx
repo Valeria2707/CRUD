@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from '../Button/Button';
-import './FormAdd.css';
+import './FormPages.css';
 import { Link, useNavigate } from 'react-router-dom';
+import Button from '../../components/Button/Button';
 
-const FormAdd = ({addNewPeople, peopleInformation}) =>{
+const FormAddPages = ({addNewPeople, peopleInformation}) =>{
     let navigate = useNavigate();
     const saveAdd = () =>{
         const newName = document.querySelector('.name').value 
@@ -12,7 +12,7 @@ const FormAdd = ({addNewPeople, peopleInformation}) =>{
 
         const checkName = /^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$/u;
         const checkSurname = /^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$/u;
-        const checkPhone = /^\d{9,15}$/;
+        const checkPhone = /[^A-Za-z]/g;
 
         const failPhone = document.querySelector('.phone');
         const failName = document.querySelector('.name');
@@ -65,4 +65,4 @@ const FormAdd = ({addNewPeople, peopleInformation}) =>{
     );
 }
 
-export default FormAdd;
+export default FormAddPages;

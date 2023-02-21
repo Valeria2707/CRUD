@@ -1,9 +1,10 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import FormAdd from './components/Form/FormAdd';
-import List from './components/List/List';
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
-import FormEdit from './components/Form/FormEdit';
+import ErrorPages from './pages/ErrorPages/ErrorPages';
+import FormEditPages from './pages/FormPages/FormEditPages';
+import FormAddPages from './pages/FormPages/FormAddPages';
+import ListPages from './pages/ListPages/ListPages';
 
 function App() {
   let [data, setData] = useState([]);
@@ -58,9 +59,10 @@ function App() {
        <Link to="/formAdd" className='link'>Form</Link>
       </div>
       <Routes>
-        <Route path='/' element ={<List dataPeople = {data} deletePerson={deletePerson}/>}/>
-        <Route path='/formAdd' element ={<FormAdd  addNewPeople = {addPeopleList} peopleInformation = {data}/>}/>
-        <Route path={`/formEdit/:id`} element ={<FormEdit peopleInformation = {data} editPersonSave = {editPerson}/>}/>
+        <Route path='/' element ={<ListPages dataPeople = {data} deletePerson={deletePerson}/>}/>
+        <Route path='/formAdd' element ={<FormAddPages addNewPeople = {addPeopleList} peopleInformation = {data}/>}/>
+        <Route path={`/formEdit/:id`} element ={<FormEditPages editPersonSave = {editPerson}/>}/>
+        <Route path={`*`} element ={<ErrorPages/>}/>
       </Routes>
     </div>
     </BrowserRouter>

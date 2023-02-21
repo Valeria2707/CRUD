@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../Button/Button';
-import ModalWindow from '../ModalWindow/ModalWndow';
-import './List.css'
+import Button from '../../components/Button/Button';
+import ModalWindow from '../../components/ModalWindow/ModalWindow';
+import './ListPages.css'
 
-const List = ({dataPeople, deletePerson}) =>{
+const ListPages = ({dataPeople, deletePerson}) =>{
   let [showModal, setShowModal] = useState(false);
   let [buttonDel, setButtonDel] = useState(0)
   let navigat = useNavigate();
@@ -57,4 +57,4 @@ const List = ({dataPeople, deletePerson}) =>{
     );
 }
 
-export default List;
+export default ListPages;

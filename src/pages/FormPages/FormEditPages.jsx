@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import Button from '../Button/Button';
+import Button from '../../components/Button/Button';
+import './FormPages.css';
 
-const FormEdit = (editPersonSave) =>{
+
+const FormEditPages = (editPersonSave) =>{
     const {id} = useParams();
     let navigate = useNavigate();
     let [name, setName] = useState('')
@@ -24,7 +26,7 @@ const FormEdit = (editPersonSave) =>{
 
         const checkName = /^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$/u;
         const checkSurname = /^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$/u;
-        const checkPhone = /^\d{9,30}$/;
+        const checkPhone = /[^A-Za-z]/g;
 
         const failPhone = document.querySelector('.phone');
         const failName = document.querySelector('.name');
@@ -49,7 +51,6 @@ const FormEdit = (editPersonSave) =>{
                 name: name + ' ' + surname,
                 phone: phone,
             }
-            console.log(editPeople);
             const editPeopleSave = editPersonSave.editPersonSave
             editPeopleSave(editPeople)
             navigate('/')
@@ -81,4 +82,4 @@ const FormEdit = (editPersonSave) =>{
     );
 }
 
-export default FormEdit;
+export default FormEditPages;
